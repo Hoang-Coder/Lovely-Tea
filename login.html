@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập</title>
+    <link rel="shortcut icon" href="https://img.icons8.com/matisse/256/experimental-bubble-tea-matisse.png"
+        type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+    <header>
+        <h1 id="logo">Lovely Tea</h1>
+        <ul>
+            <li><i class="fa-solid fa-house"></i><a href="index.html"> &nbsp; Home</a></li>
+            <li><i class="fa-solid fa-list"></i><a href="index.html#product_title"> &nbsp; Product</a></li>
+            <li><i class="fa-solid fa-cart-shopping"></i><a href="cart.html"> &nbsp; Cart</a></li>
+        </ul>
+        <button><a href="login.html">Sign up</a></button>
+    </header>
+    <div id="dang_nhap">
+        <h1>Xin Chào</h1>
+        <h3>Bạn đã bị đăng xuất vì<br> lý do bảo mật</h3>
+        <input id="log_name" type="text" placeholder="Username"><br>
+        <input id="log_pass" type="password" placeholder="Password">
+        <span>Chưa có tài khoản? <button onclick="chuyen_doi1()" id="chuyen_doi">Đăng ký</button></span>
+        <button id="nut_dang_nhap" onclick="login()">Đăng nhập</button>
+    </div>
+    <div id="dang_ky">
+        <h1>Chào Mừng</h1>
+        <h3>Nếu chưa có tài khoản bạn có thể <br> đăng ký ở đây</h3>
+        <input id="name" type="text" placeholder="Username"><br>
+        <input id="mail" type="email" placeholder="Email"><br>
+        <input id="pass" type="text" placeholder="Password"><br>
+        <input id="re-pass" type="text" placeholder="Confirm Password"><br>
+        <span>Đã có tài khoản? <button onclick="chuyen_doi2()" id="chuyen_doi">Đăng nhập</button></span>
+        <button id="nut_dang_ky" onclick="check_Register()">Đăng Ký</button>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

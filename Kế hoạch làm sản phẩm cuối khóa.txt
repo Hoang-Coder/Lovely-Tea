@@ -1,0 +1,7 @@
+Kế hoạch làm sản phẩm cuối khóa
+Chủ đề: Quốc tế hạnh phúc 20/3.
+Buổi 10 (3/3): Giao diện trang chủ trang con, giao các chức năng (tham khảo template có sẵn).
+Buổi 11 (10/3): Đổ dữ liệu ra trang chủ / trang con JS.
+Buổi 12 (17/3): Truyền dữ liệu giữa các trang (giỏ hàng) (đăng ký).
+Buổi 13 (24/3): Hoàn thiện sản phẩm web, xây dựng và hoàn thiện slide thuyết trình về sản phẩm.
+Buổi 14 (31/3): Hoàn thành tất cả và thuyết trình.

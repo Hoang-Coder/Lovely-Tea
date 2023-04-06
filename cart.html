@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trà Sữa Tình Yêu</title>
+    <link rel="stylesheet" href="cart.css">
+    <link rel="shortcut icon" href="https://img.icons8.com/matisse/256/experimental-bubble-tea-matisse.png"
+        type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <header>
+        <h1 id="logo">Lovely Tea</h1>
+        <ul>
+            <li><i class="fa-solid fa-house"></i><a href="./index.html"> &nbsp; Home</a></li>
+            <li><i class="fa-solid fa-list"></i><a href="index.html#product_title"> &nbsp; Product</a></li>
+            <li><i id="cart_count" class="fa-solid fa-cart-shopping"></i><a href=""> Cart</a></li>
+        </ul>
+        <button id="login" style="display: none"><a href="login.html">Sign up</a></button>
+        <button id="logined" onclick="logout()"><i class="fa-solid fa-user"></i>&nbsp;&nbsp;</button>
+    </header>
+    <div id="menu">
+        <button onclick="logout()" id="log_out"><i class="fa-solid fa-right-from-bracket"></i> &nbsp; Đăng xuất</button>
+    </div>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th class="theader">Mã</th>
+                    <th class="theader">Tên</th>
+                    <th class="theader">Giá</th>
+                    <th class="theader">Số lượng</th>
+                    <th class="theader"></th>
+                </tr>
+            </thead>
+            <tbody id="tablebody">
+            </tbody>
+        </table>
+    </main>
+    <script src="main.js">
+    </script>
+</body>
+<script src="card.js"></script>
+<script>
+    check_currentUser();
+    update_noti_cart();
+    // let giohang = localStorage.getItem("giohang")
+    //     ? JSON.parse(localStorage.getItem("giohang"))
+    //     : [];
+    console.log(products)
+    for (let product of products) { // Lặp trong products (DATA)
+        for (let sanpham of cart_detail) { // Lặp trong giỏ hàng
+            if (sanpham.id == product.id) { // ID sản phẩm trong giỏ hàng bằng ID sản phẩm trong DATA
+                let cart_item = `
+                         <tr>
+                            <td>${product.id}</td>
+                            <td>${product.name}</td>
+                            <td>${product.price}</td>
+                            <td><button id="cong" class="tang_giam" onclick="update_cart(${sanpham.id},-1)">-</button> ${sanpham.quantity} <button id="tru" class="tang_giam" onclick="update_cart(${sanpham.id},1)">+</button></td>
+                        </tr> `
+                document.getElementById("tablebody").innerHTML += cart_item;
+            }
+        }
+    }
+    function delete_cart(productID) { // Function xoá sản phẩm trong giỏ hàng
+        // let cart = localStorage.getItem("giohang") //khai báo biến, nếu đã có localStorage thì trả về mảng "giohang" sau khi được ép kiểu json
+        //     ? JSON.parse(localStorage.getItem("giohang"))
+        //     : [];// Nếu k có localStorage thì trả về mảng rỗng
+        let existingItem = cart_detail.find((i) => i.id == productID); // Kiểm gia object có ID giống productID trong mảng "giohang"
+        if (existingItem) { //Nếu có object vừa tìm thì thực hiện:
+            cart_detail = cart_detail.filter((item) => item.id != existingItem.id);
+        }
+        current_cart.cart_detail = cart_detail; //Lưu lại chi tiết giỏ hàng
+        localStorage.removeItem("giohang", carts)
+        // localStorage.setItem("giohang", JSON.stringify(carts)); // Lưu lại "giohang" trong localStorage
+        update_noti_cart();
+        location.reload(); //Reload lại trang để update dữ liệu
+    }
+    function update_cart(productID, value) { // Cập nhật số lượng của phần tử có mã là ID với số lượng value
+        // let cart = localStorage.getItem("giohang")
+        //     ? JSON.parse(localStorage.getItem("giohang"))
+        //     : [];
+        let existingItem = cart_detail.find((item) => item.id == productID); // khai báo biến "phần tử tồn tại" 
+        if (existingItem) {
+            if (existingItem.quantity == 1 && value == -1) { // Nếu phần tử đang tìm có số lượng 1 và ta muốn giảm 1 phần tử => phần tử sẽ về 0, k tồn tại
+                cart_detail = cart_detail.filter((item) => item.id != existingItem.id); // Xây dựng giỏ hàng mới với các phần tử mới, khác mã phần tử vừa bỏ đi
+            } else {
+                existingItem.quantity += value; //  nếu phần tử có số lượng khác 1 (từ 2 trở lên) thì cộng trừ thêm với số lượng mới
+            }
+        }
+        current_cart.cart_detail = cart_detail; //Lưu lại chi tiết giỏ hàng
+        localStorage.setItem("giohang", JSON.stringify(carts));
+        update_noti_cart();
+        location.reload();
+    }
+</script>
+
+</html>

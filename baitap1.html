@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function loadJson(url) {
+            return fetch(url)
+            .then(reponse => {
+                if (reponse.status == 200) {
+                    return reponse.json();
+                }
+                else {
+                throw new Error(reponse.status);
+            }
+            })
+        }
+        loadJson('no-such-user.json')
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
