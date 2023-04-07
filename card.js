@@ -1,3 +1,17 @@
+let demsolan = 0
+function dathang() {
+    if (demsolan <= 1) {
+        setTimeout('alert("Bạn đã đặt hàng thành công")', 1200)
+        alert("Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi")
+        demsolan ++
+    }
+    else if (demsolan >= 2) {
+        luachondathang = prompt("Bạn đã đặt hàng rồi, Bạn có muốn đặt hàng lần nữa ko. Nhập [Y] hoặc [N]")
+        if (luachondathang.indexOf('Y') != -1) {
+            alert("Cảm ơn bạn đã tin tưởng chúng tôi Số đơn hàng của bạn là:"+" "+demsolan)
+        }
+    }
+}
 var currentUser = JSON.parse(localStorage.getItem("currentUser"))[0]; 
 var carts = localStorage.getItem("giohang") 
         ? JSON.parse(localStorage.getItem("giohang")) 
